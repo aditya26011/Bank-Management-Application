@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+    <style>
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f4f7f9, #e9ecef);
+            text-align: center;
+            padding-top: 100px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 14px 28px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Success & Error Messages */
+        .message-box {
+            width: 50%;
+            margin: 0 auto 20px auto;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .btn {
+                width: 80%;
+                margin: 10px auto;
+                display: block;
+            }
+            .message-box {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div th:if="${message}"
+     style="background:#c6ffc6;padding:10px;margin-bottom:15px;border-radius:8px;">
+    <p th:text="${message}"></p>
+</div>
+
+<div th:if="${error}"
+     style="background:#ffb3b3;padding:10px;margin-bottom:15px;border-radius:8px;">
+    <p th:text="${error}"></p>
+</div>
+
+<h1>Welcome to Bank Portal</h1>
+
+
+
+<a th:href="@{/login}" class="btn">Login</a>
+<a th:href="@{/register}" class="btn">Register</a>
+</body>
+</html>

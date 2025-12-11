@@ -1,0 +1,97 @@
+##spring:
+##  application:
+##    name: api-gateway
+##  app:
+##    jwtSecret: mySecretKey123912738nndjnurhesiohoisniosbhirjoushnbsnncsmnlkei
+##  cloud:
+##    gateway:
+##      routes:
+##        - id: VERIFICATION-SERVICE
+##          uri: lb://verificationservice
+##          predicates:
+##            - Path=/bank/**
+##        - id: PAYMENT-SERVICE
+##          uri: lb://payment
+##          predicates:
+##            - Path=/payment/**
+##        - id: TRANSACTION-SERVICE
+##          uri: lb://transaction
+##          predicates:
+##            - Path=/transaction/**
+##        - id: USER-SERVICE
+##          uri: lb://userservice
+##          predicates:
+##            - Path=/user/**
+##        - id: WALLET-SERVICE
+##          uri: lb://wallet
+##          predicates:
+##            - Path=/wallet/**
+##        - id: EMAIL-SENDER-SERVICE
+##          uri: lb://emailsender
+##          predicates:
+##            - Path=/notify/**
+##      discovery:
+##        locator:
+##          enabled: true
+##          lower-case-service-id: true
+##
+##server:
+##  port: 8091
+##
+##eureka:
+##  client:
+##    register-with-eureka: true
+##    fetch-registry: true
+##    service-url:
+##      defaultZone: http://localhost:8761/eureka/
+#######################################
+#spring:
+#  application:
+#    name: api-gateway
+#  app:
+#    jwtSecret: mySecretKey123912738nndjnurhesiohoisniosbhirjoushnbsnncsmnlkei
+#  cloud:
+#    gateway:
+#      routes:
+#        # These URIs match the actual service IDs registered in Eureka
+#        - id: verification-service
+#          uri: lb://verificationservice
+#          predicates:
+#            - Path=/bank/**
+#        - id: payment-service
+#          uri: lb://payment
+#          predicates:
+#            - Path=/payment/**
+#        - id: transaction-service
+#          uri: lb://transaction
+#          predicates:
+#            - Path=/transaction/**
+#        - id: user-service
+#          uri: lb://userservice
+#          predicates:
+#            - Path=/user/**
+#        - id: wallet-service
+#          uri: lb://wallet
+#          predicates:
+#            - Path=/wallet/**
+#        - id: email-sender-service
+#          uri: lb://emailsender
+#          predicates:
+#            - Path=/notify/**
+#      discovery:
+#        locator:
+#          enabled: true
+#          # This property is fine to leave as true if all your services use lowercase names
+#          lower-case-service-id: true
+#
+#server:
+#  port: 8091
+#
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#
+#

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/register.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        .pwd-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .pwd-container input {
+            flex: 1;
+        }
+        .pwd-toggle {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>User Registration</h1>
+
+<!-- Success message -->
+<div th:if="${message}"
+     style="background:#c6ffc6;padding:10px;margin-bottom:15px;border-radius:8px;">
+    <p th:text="${message}"></p>
+</div>
+
+<!-- Error message -->
+<div th:if="${error}"
+     style="background:#ffb3b3;padding:10px;margin-bottom:15px;border-radius:8px;">
+    <p th:text="${error}"></p>
+</div>
+
+<form th:action="@{/register}" th:object="${userDto}" method="post">
+
+    <label>Username:</label>
+    <input type="text" th:field="*{username}" required />
+    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+
+    <!-- Password -->
+    <label>Password:</label>
+    <div class="pwd-container">
+        <input type="password" id="pass" th:field="*{password}" required
+               oninput="showHideIcon('pass','eye1')" />
+        <i id="eye1" class="fa-solid fa-eye pwd-toggle"
+           onclick="togglePass('pass','eye1')"></i>
+    </div>
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+    <!-- Confirm Password -->
+    <label>Confirm Password:</label>
+    <div class="pwd-container">
+        <input type="password" id="cpass" th:field="*{confirmPassword}" required
+               oninput="showHideIcon('cpass','eye2')" />
+        <i id="eye2" class="fa-solid fa-eye pwd-toggle"
+           onclick="togglePass('cpass','eye2')"></i>
+    </div>
+    <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required />
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" required />
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input id="phoneNumber" type="text" th:field="*{phoneNumber}" required />
+    <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+
+    <label>Gender:</label>
+    <select th:field="*{gender}">
+        <option value="">--Select--</option>
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+    </select>
+    <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+
+    <label>KYC Completed:</label>
+    <input type="checkbox" th:field="*{kyc}" />
+    <div th:if="${#fields.hasErrors('kyc')}" th:errors="*{kyc}"></div>
+
+    <label>Date of Birth:</label>
+    <input type="date" th:field="*{dob}" />
+    <div th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" class="dob-error"></div>
+
+    <button type="submit">Register</button>
+</form>
+
+<script>
+    window.onload = function () {
+        document.getElementById("eye1").style.display = "none";
+        document.getElementById("eye2").style.display = "none";
+    };
+
+    function togglePass(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+
+    function showHideIcon(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+
+        if (input.value.trim().length > 0) {
+            icon.style.display = "block";
+        } else {
+            icon.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>

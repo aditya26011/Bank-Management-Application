@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f6fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
+
+        button {
+            margin-top: 25px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #45a049;
+            transform: scale(1.03);
+        }
+
+        /* Readonly field styling */
+        .readonly-field {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 6px;
+<!--            border: 1px solid #ccc;-->
+            font-size: 1rem;
+            color: #333;
+            margin-top: 6px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .form-card {
+                padding: 20px;
+                margin: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <h2>Edit User Details</h2>
+    <form th:action="@{/details/edit}" th:object="${user}" method="post">
+
+        <!-- ID (readonly, display only) -->
+        <label>ID</label>
+        <p th:text="*{id}" class="readonly-field"></p>
+
+        <!-- Username (readonly, display only) -->
+        <label>Username</label>
+        <p th:text="*{username}" class="readonly-field"></p>
+
+        <!-- Editable fields -->
+        <label>Name</label>
+        <input type="text" th:field="*{name}" />
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" />
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+
+        <label>Phone Number</label>
+        <input type="text" th:field="*{phoneNumber}" />
+        <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></div>
+
+        <label>Gender</label>
+        <select th:field="*{gender}">
+            <option th:value="MALE">Male</option>
+            <option th:value="FEMALE">Female</option>
+        </select>
+
+        <label>KYC</label>
+        <select th:field="*{kyc}">
+            <option th:value="true">Yes</option>
+            <option th:value="false">No</option>
+        </select>
+
+<!--        <label>Date of Birth</label>-->
+<!--        <input type="date" th:field="*{dob}" />-->
+<!--        <div th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" class="error"></div>-->
+
+        <button type="submit">Update Details</button>
+    </form>
+</div>
+</body>
+</html>

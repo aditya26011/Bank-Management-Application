@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f6fa;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+        }
+
+        h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;          /* deep navy */
+    text-transform: uppercase;
+    letter-spacing: 2px;     /* spacing between letters */
+    background: linear-gradient(to right, #4CAF50, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* gradient text effect */
+    border-bottom: 3px solid #4CAF50;
+    padding-bottom: 10px;
+}
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+
+.card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.25rem; /* Use relative units for better scaling */
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: #333;
+    max-width: 300px; /* Optional for layout control */
+    margin: auto;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: Add focus state for accessibility */
+.card:focus {
+    outline: 3px solid #0078d4; /* High-contrast focus ring */
+    outline-offset: 4px;
+}
+
+/* Responsive tweak */
+@media (max-width: 600px) {
+    .card {
+        font-size: 1rem;
+        padding: 20px;
+    }
+}
+
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Banking Dashboard</h1>
+
+    <div th:if="${message}"
+         style="background:#c6ffc6;padding:10px;margin-bottom:15px;border-radius:8px;">
+        <p th:text="${message}"></p>
+    </div>
+
+    <div th:if="${error}"
+         style="background:#ffb3b3;padding:10px;margin-bottom:15px;border-radius:8px;">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div class="card-container">
+
+        <a th:href="@{/balance}">
+            <div class="card">Check Balance</div>
+        </a>
+
+        <a th:href="@{/credit}">
+            <div class="card">Credit Money</div>
+        </a>
+
+        <a th:href="@{/debit}">
+            <div class="card">Withdraw Money</div>
+        </a>
+
+        <a th:href="@{/transfer}">
+            <div class="card">Transfer Money</div>
+        </a>
+
+        <a th:href="@{/transactions}">
+            <div class="card">View Transactions Report</div>
+        </a>
+
+        <a href="/logout"
+           style="position:absolute;top:20px;right:20px;background:#ff4d4d;color:white;
+          padding:8px 15px;border-radius:6px;text-decoration:none;font-weight:bold;">
+            Logout
+        </a>
+
+        <a href="/details"
+           style="position:absolute;top:20px;left:20px;background:#4CAF50;color:white;
+   padding:8px 15px;border-radius:6px;text-decoration:none;font-weight:bold;">
+            View Details
+        </a>
+
+
+
+    </div>
+
+</div>
+
+</body>
+</html>
