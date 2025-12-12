@@ -6,7 +6,7 @@ import com.payment.entities.Wallet;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(url= "http://localhost:8082", value = "Wallet-client")
+@FeignClient(url= "https://bank-management-application.onrender.com", value = "Wallet-client")
 public interface WalletINF {
 
     @GetMapping("/wallet/getBalance")

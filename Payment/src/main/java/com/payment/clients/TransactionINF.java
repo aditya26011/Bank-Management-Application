@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(url= "http://localhost:8083", value = "transaction-client")
+@FeignClient(url= "https://transaction-service-141f.onrender.com", value = "transaction-client")
 public interface TransactionINF {
 
     @GetMapping("/transaction/getAllById/{id}")

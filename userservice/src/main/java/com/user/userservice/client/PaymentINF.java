@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(url= "http://localhost:8084", value = "payment-client")
+@FeignClient(url= "https://payment-4c0r.onrender.com", value = "payment-client")
 
 public interface PaymentINF {
 

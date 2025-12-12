@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(url = "http://localhost:8090", value = "apiClient" , configuration = FeignConfig.class)
+@FeignClient(url = "https://api-gateway-5b5z.onrender.com", value = "apiClient" , configuration = FeignConfig.class)
 public interface ApiClient {
 
     @PostMapping("/bank/register")

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(url= "http://localhost:8082", value = "wallet-client")
+@FeignClient(url= "https://bank-management-application.onrender.com", value = "wallet-client")
 
 public interface WalletINF {
 
