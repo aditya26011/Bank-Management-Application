@@ -13,7 +13,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 //import static org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions.http;
 
 @SpringBootApplication
-@EnableFeignClients
 public class ApiGatewayApplication {
 
 	public static void main(String[] args) {
