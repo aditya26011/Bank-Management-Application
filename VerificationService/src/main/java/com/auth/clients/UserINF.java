@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(url= "https://user-service-di5e.onrender.com", value = "user-client")
+@FeignClient(
+        name = "user-client",
+        url = "https://user-service-di5e.onrender.com"
+)
 public interface UserINF {
     @PostMapping("/user")
     public ResponseEntity<UserCreationDTO> saveUser(@RequestBody UserDto user);
