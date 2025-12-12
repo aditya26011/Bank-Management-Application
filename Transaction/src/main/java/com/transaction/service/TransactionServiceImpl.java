@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 //import java.time.LocalDate;
 //import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,23 +47,23 @@ public class TransactionServiceImpl implements TransactionInf{
             // Save transaction
             Transactions savedTransaction = repo.save(transactions);
 
-            // Prepare email
-//            String userEmail = userINF.getEmail(transactions.getUserId());
-//            emailDTO.setTo(userEmail);
-//            emailDTO.setSubject("Transaction Successful");
-//            emailDTO.setBody(
-//                    "Dear User,\n\n" +
-//                            "Your transaction has been successfully processed.\n" +
-//                            "Details:\n" +
-//                            "Type: " + transactions.getType() + "\n" +
-//                            "Amount: ₹" + transactions.getBalance() + "\n" +
-//                            "Status: " + transactions.getStatus() + "\n" +
-//                            "Transaction ID: " + savedTransaction.getId() + "\n" +
-//                            "Date: " + LocalDateTime.now() + "\n\n" +
-//                            "Thank you for banking with us."
-//            );
-//
-//            notifyINF.sendEmail(emailDTO);
+//             Prepare email
+            String userEmail = userINF.getEmail(transactions.getUserId());
+            emailDTO.setTo(userEmail);
+            emailDTO.setSubject("Transaction Successful");
+            emailDTO.setBody(
+                    "Dear User,\n\n" +
+                            "Your transaction has been successfully processed.\n" +
+                            "Details:\n" +
+                            "Type: " + transactions.getType() + "\n" +
+                            "Amount: ₹" + transactions.getBalance() + "\n" +
+                            "Status: " + transactions.getStatus() + "\n" +
+                            "Transaction ID: " + savedTransaction.getId() + "\n" +
+                            "Date: " + LocalDateTime.now() + "\n\n" +
+                            "Thank you for banking with us."
+            );
+
+            notifyINF.sendEmail(emailDTO);
             return savedTransaction;
 
         } else {
@@ -92,35 +93,35 @@ public class TransactionServiceImpl implements TransactionInf{
             Transactions savedReceiverTransaction = repo.save(receiverTransaction);
 
             // Prepare email for sender
-//            String senderEmail = userINF.getEmail(senderTransaction.getUserId());
-//            emailDTO.setTo(senderEmail);
-//            emailDTO.setSubject("Amount Transferred Successfully");
-//            emailDTO.setBody(
-//                    "Dear User,\n\n" +
-//                            "You have successfully transferred ₹" + transferRequestDTO.getBalance() +
-//                            " to User ID: " + transferRequestDTO.getReceiverId() + ".\n" +
-//                            "Status: SUCCESSFUL\n" +
-//                            "Transaction ID: " + senderTransaction.getId() + "\n" +
-//                            "Date: " + LocalDateTime.now() + "\n\n" +
-//                            "Thank you for banking with us."
-//            );
-//
-//            notifyINF.sendEmail(emailDTO);
+            String senderEmail = userINF.getEmail(senderTransaction.getUserId());
+            emailDTO.setTo(senderEmail);
+            emailDTO.setSubject("Amount Transferred Successfully");
+            emailDTO.setBody(
+                    "Dear User,\n\n" +
+                            "You have successfully transferred ₹" + transferRequestDTO.getBalance() +
+                            " to User ID: " + transferRequestDTO.getReceiverId() + ".\n" +
+                            "Status: SUCCESSFUL\n" +
+                            "Transaction ID: " + senderTransaction.getId() + "\n" +
+                            "Date: " + LocalDateTime.now() + "\n\n" +
+                            "Thank you for banking with us."
+            );
+
+            notifyINF.sendEmail(emailDTO);
             // Prepare email for receiver (optional)
-//            EmailDTO receiverEmailDTO = new EmailDTO();
-//            receiverEmailDTO.setTo(userINF.getEmail(receiverTransaction.getUserId()));
-//            receiverEmailDTO.setSubject("Amount Credited to Your Account");
-//            receiverEmailDTO.setBody(
-//                    "Dear User,\n\n" +
-//                            "You have received ₹" + transferRequestDTO.getBalance() +
-//                            " from User ID: " + transferRequestDTO.getId() + ".\n" +
-//                            "Status: SUCCESSFUL\n" +
-//                            "Transaction ID: " + receiverTransaction.getId() + "\n" +
-//                            "Date: " + LocalDateTime.now() + "\n\n" +
-//                            "Thank you for banking with us."
-//            );
-//
-//            notifyINF.sendEmail(emailDTO);
+            EmailDTO receiverEmailDTO = new EmailDTO();
+            receiverEmailDTO.setTo(userINF.getEmail(receiverTransaction.getUserId()));
+            receiverEmailDTO.setSubject("Amount Credited to Your Account");
+            receiverEmailDTO.setBody(
+                    "Dear User,\n\n" +
+                            "You have received ₹" + transferRequestDTO.getBalance() +
+                            " from User ID: " + transferRequestDTO.getId() + ".\n" +
+                            "Status: SUCCESSFUL\n" +
+                            "Transaction ID: " + receiverTransaction.getId() + "\n" +
+                            "Date: " + LocalDateTime.now() + "\n\n" +
+                            "Thank you for banking with us."
+            );
+
+            notifyINF.sendEmail(emailDTO);
             return savedReceiverTransaction;
         }
     }
