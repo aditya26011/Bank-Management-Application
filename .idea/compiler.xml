@@ -9,9 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="FrontendBank" />
         <module name="Payment" />
-        <module name="VerificationService" />
         <module name="ServiceRegistry" />
         <module name="ApiGateway" />
+        <module name="VerificationService" />
       </profile>
       <profile name="Annotation profile for Wallet" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -21,10 +21,18 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
-        <module name="emailsender" />
-        <module name="Transaction" />
         <module name="Wallet" />
+      </profile>
+      <profile name="Annotation profile for UserService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+        </processorPath>
+        <module name="Transaction" />
         <module name="userservice" />
+        <module name="emailsender" />
       </profile>
     </annotationProcessing>
   </component>
