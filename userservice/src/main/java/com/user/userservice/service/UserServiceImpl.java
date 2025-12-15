@@ -4,6 +4,7 @@ import com.user.userservice.client.WalletINF;
 import com.user.userservice.entity.User;
 import com.user.userservice.entity.UserDto;
 import com.user.userservice.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void edit(User user) {
 
         User userF = userRepository.findById(user.getId())
